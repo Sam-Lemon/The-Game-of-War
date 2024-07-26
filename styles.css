@@ -1,0 +1,137 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(images/wood.jpg);
+    background-color: white;
+    margin-top: 6rem;
+}
+
+.main {
+    background-image: url(images/greenGrass.jpg);
+    background-color: green;
+    border: 10px ridge brown;
+    box-shadow: 5px 5px 5px 5px rgb(27, 26, 26);
+    width: 700px;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 6rem); /*grid-template column/row build the spacing template*/
+    grid-template-rows: 9rem 4rem 9rem;
+    gap: 1rem;
+    cursor: pointer;        /*No matter where on screen pointer is, a click will advance the game*/
+    justify-content: center;
+    margin: auto;
+}
+
+
+.score {
+    background-image: url(images/cork.jpg);
+    background-color: rgba(78, 219, 146, 0.695);
+    color: black;
+    height: 65%;       
+    width: 100%;
+    position: relative;
+    border: 2px solid black;
+    border-radius: 25%;
+    font-size: 1rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.c-score, .p-score {
+    color: black;
+    position: absolute;
+    height: 30px;
+    width: 20px;
+    bottom: 6px;
+    right: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+}
+
+
+.deck {
+    height: 100%;       
+    width: 100%;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    border-radius: .25rem;
+    color: white;
+    user-select: none;      /*prevents user from selecting text*/
+}
+
+.computer-deck {
+    background-color: rgb(218, 67, 67);
+}
+
+.player-deck {
+    background-color: rgb(66, 66, 194);
+}
+
+.text {
+    background-color: rgba(78, 219, 146, 0.695);
+    color: whitesmoke;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 2px dotted black;
+    grid-column: span 3;    /*makes text span all columns*/
+    display: flex;          /*centers text (next 2 lines)*/
+    justify-content: center;
+    align-items: center;
+    user-select: none; 
+}
+
+.card {
+    background-color: white;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+    border-radius: .25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    user-select: none; 
+}
+
+.card.red {
+    color: red;
+}
+
+.card.black {
+    color: black;
+}
+
+.card::before,
+.card::after {
+    content: attr(data-rank);
+    position: absolute;     
+    font-size: 1.25rem;
+}
+
+.card::before {
+    top: .5rem;
+    left: .5rem;
+
+}
+
+.card::after {
+    bottom: .5rem;
+    right: .5rem;
+    transform: rotate(180deg);     
+
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    user-select: none;  
+}
