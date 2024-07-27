@@ -1,5 +1,4 @@
-import { doc } from 'mocha/lib/reporters';
-import Deck from './deck.js';
+import Deck from './deck.js'    //imports deck and card info from deck.js file
 
 const cardValue = {
     "2": 2,
@@ -17,18 +16,20 @@ const cardValue = {
     "A": 14,
 }
 
+// these variables are linking the js to html classes
 const computerCardPile = document.querySelector(".computer-card-pile")
 const playerCardPile = document.querySelector(".player-card-pile")
 const computerDeckElement = document.querySelector(".computer-deck")
-const playerDeckElement = document.querySelector(".player-deck")
-const text = document.querySelector(".text")
-const playerScoreElement = document.querySelector(".p-score")
-const computerScoreElement = document.querySelector(".c-score")
+const playerDeckElement = document.querySelector('.player-deck')
+const text = document.querySelector('.text')
+const playerScoreElement = document.querySelector('.p-score')
+const computerScoreElement = document.querySelector('.c-score')
 
-let playerDeck, computerDeck, inRound, stop
+
+let playerDeck, computerDeck,inRound, stop;
 
 document.addEventListener('click', () => {
-    if (stop) {
+    if (stop) {     //stops game and starts over when player or computer is out of cards
         startGame()
         return
     }
@@ -40,26 +41,29 @@ document.addEventListener('click', () => {
     }
 })
 
-startGame()
+startGame()                 //starts game
 function startGame() {
-    const deck = new Deck()
-    deck.shuffle()
+    const deck = new Deck()     //creates new deck
+    deck.shuffle()              //shuffles that deck
 
-    const deckMidpoint = deck.numberOfCards / 2
-    playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
-    computerDeck = new Deck(deck.cards.slice(deckMidpoints, deck.numberOfCards))
+    const deckMidpoint = Math.ceil(deck.numberOfCards / 2);      //splits the deck in half
+    playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))        //gives player first 26 cards of the deck, index 0 to midpoint
+    computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))     //gives computer last 26 cards of the deck, midpoint to end
+    // computerDeck = new Deck([new Card('s', 5)])     //gives computer 1 card to test functionality of gameOver
 
+    
     inRound = false
     stop = false
-    
-    resetRound()
+
+    resetRound();
+
 }
 
-function resetRound() {
+function resetRound() {       //clears out all of our values from the previous round
     inRound = false;
-    computerCardPile.innerHTML = "";
-    playerCardPile.innerHTML = "";
-    text.innerText = "";
+    computerCardPile.innerHTML = '';
+    playerCardPile.innerHTML = '';
+    text.innerText = '';
 
     updateDeckCount();
 }
@@ -67,59 +71,58 @@ function resetRound() {
 function flipCards() {
     inRound = true;
 
-    const playerCard = playerDeck.topCard()
-    const computerCard = computer.Deck.topCard()
+    const playerCard = playerDeck.topCard();     //pulls the card off of the top of the player's deck via method in deck class
+    const computerCard = computerDeck.topCard(); 
 
-    playerCardPile.appendChild(playerCard.getHTML())
-    computerCardPile.appendChild(computerCard.getHTML())
+    playerCardPile.appendChild(playerCard.getHTML());    //renders the card
+    computerCardPile.appendChild(computerCard.getHTML());
 
     updateDeckCount();
 
-    if (isRoundWinner(playerCard, computerCard)) {
-        text.innerText = "Player wins";
+    if (isRoundWinner(playerCard, computerCard)) {      //if Player wins, both player and computer card go into their hand
+        text.innerText = 'Player wins';
         playerDeck.push(playerCard);
         playerDeck.push(computerCard);
         updatePlayerScore();
-    } else if (isRoundWinner(computerCard, playerCard)) {
-        text.innerText = "Player loses";
+    } else if (isRoundWinner(computerCard, playerCard)) {   //if Computer wins, both player and computer card go into their hand
+        text.innerText = 'Player loses';
         computerDeck.push(playerCard);
         computerDeck.push(computerCard);
         updateComputerScore();
     } else {
-        text.innerText = "Tie"
+        text.innerText = 'Tie';      //if tie, each player/computer gets their card back
         playerDeck.push(playerCard);
         computerDeck.push(computerCard);
     }
 
-    if (isGameOver(playerDeck)) {
-        text.innerText = "You lose";
+    if (isGameOver(playerDeck)) {   
+        text.innerText = 'You lose';
         stop = true;
     } else if (isGameOver(computerDeck)) {
-        text.innerText = "Winner winner chicken dinner!!";
+        text.innerText = 'Winner winner chicken dinner!!';
         stop = true;
     }
 }
 
-function updateDeckCount () {
-    computerDeckElement.innerText = computerDeck.numberOfCards;
-    playerDeckElement.innerText = playerDeck.numberOfCards;
+function updateDeckCount() {
+    computerDeckElement.innerText = computerDeck.numberOfCards;     //shows the number of cards in the computer's deck
+    playerDeckElement.innerText = playerDeck.numberOfCards;     //shows the number of cards in the player's deck
 }
 
-function isRoundWinner (cardOne, cardTwo) {
+function isRoundWinner(cardOne, cardTwo) {    //compares values of card
     return cardValue[cardOne.rank] > cardValue[cardTwo.rank];
 }
 
 let playerScore = 0;
 function updatePlayerScore() {
-    playerScoreElement.innerText = ' ' + (playerScore += 1);
+    playerScoreElement.innerText = '   ' + (playerScore += 1);
 }
 
 let computerScore = 0;
 function updateComputerScore() {
-    computerScoreElement.innerText = " " + (computerScore += 1);
+    computerScoreElement.innerText = '   ' + (computerScore += 1);
 }
 
 function isGameOver(deck) {
     return deck.numberOfCards === 0;
 }
-

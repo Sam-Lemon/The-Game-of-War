@@ -1,80 +1,64 @@
-const suits = ["♠", "♣", "♥", "♦"];
-const ranks = [
-  "A",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "J",
-  "Q",
-  "K",
-];
+const suits = ['♠', '♣', '♥', '♦'];
+const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
-//Deck of cards
-export default class Deck {
-  constructor(cards = newDeck()) {
-    this.cards = cards;
-  }
-
-  // Get the number of cards in the deck
-  get numberOfCards() {
-    return this.cards.length;
-  }
-
-  // Remove and return the top card of the deck
-  topCard() {
-    return this.cards.shift();
-  }
-
-  // Add a card to the bottom of the deck
-  push(card) {
-    this.cards.push(card);
-  }
-
-  // Shuffle the deck using Fisher-Yates algorithm
-  shuffle() {
-    for (let i = this.numberOfCards - 1; i > 0; i--) {
-      const newIndex = Math.floor(Math.random() * (i + 1));
-      const oldValue = this.cards[newIndex];
-      console.log("oldValue in loop", oldValue);
-      this.cards[newIndex] = this.cards[i];
-      this.cards[i] = oldValue;
+export default class Deck {          //anything that deals with a pile of cards will be encapsulated within this class
+    constructor(cards = newDeck()) {
+        this.cards = cards;
     }
-  }
+
+    get numberOfCards() {           //getter encapsulates this.cards.length instead of having to type it all the time
+        return this.cards.length;
+    }
+
+    topCard() {
+        return this.cards.shift();   //removes top element of array and returns it to us
+    }
+
+    push(card) {                    //put card at end of array
+        this.cards.push(card);
+    }
+
+
+// shuffle iterates through our deck from back to front placing a card randomly in the deck somewhere earlier than the current place.
+// then it takes the old value of the card and places it in the new value, and flips the old value with the new value.
+    shuffle() {
+       for (let i = this.numberOfCards -1; i > 0; i--) {      
+        const newIndex = Math.floor(Math.random() * (i + 1));        
+        const oldValue = this.cards[newIndex];
+        // console.log("oldValue in loop", oldValue)
+        this.cards[newIndex] = this.cards [i];
+        this.cards[i] = oldValue;       
+        }
+    }
 }
 
-// Represents single card
-export class Card {
-  constructor(suit, rank) {
-    this.suit = suit;
-    this.rank = rank;
-  }
+class Card {
+    constructor(suit, rank) {
+        this.suit = suit;
+        this.rank = rank;
+    }
 
-  // Gets card color based on suit
-  get color() {
-    return this.suit === "♠" || this.suit === "♣" ? "black" : "red";
-  }
+    get color() {
+        return this.suit === '♠' || this.suit === '♣' ? 'black' : 'red'   //turnery operator - if the card is a spade or a club,
+                                                                          //the color of the card is black, otherwise it should be red
+    }
 
-  // Create and return an HTML element representing the card
-  getHTML() {
-    const cardDiv = document.createElement("div");
-    cardDiv.innerText = this.suit;
-    cardDiv.classList.add("card", this.color);
-    cardDiv.dataset.rank = `${this.suit} ${this.rank}`;
-    return cardDiv;
-  }
+    getHTML() { //this pulls the code from the div in the index.html file
+        const cardDiv = document.createElement("div")
+        cardDiv.innerText = this.suit               
+        cardDiv.classList.add("card", this.color)
+        cardDiv.dataset.rank = `${this.suit} ${this.rank}`
+        return cardDiv
+    }
 }
 
-// Create a new deck and returns an array of Card objects representing the full deck
+
+// newDeck loops through all the suits, then all the values, and combines them. 
+// flatMap takes the arrays and flattens them into one and then creates a new card.
 function newDeck() {
-  return suits.flatMap((suit) => {
-    return ranks.map((rank) => {
-      return new Card(suit, rank);
-    });
-  });
+    return suits.flatMap(suit => {     
+        return ranks.map (rank => {
+            return new Card(suit, rank)
+        })
+    })
 }
