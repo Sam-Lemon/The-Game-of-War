@@ -64,7 +64,6 @@ class Card {
   getHTML() {
     //this pulls the code from the div in the index.html file
     const cardDiv = document.createElement("div");
-    // cardDiv.innerHTML = `${this.rank}<br>${this.suit}`;
     cardDiv.classList.add("card", this.color);
     cardDiv.dataset.rank = `${this.suit} ${this.rank}`;
 
