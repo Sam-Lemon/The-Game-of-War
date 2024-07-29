@@ -1,6 +1,6 @@
 /***GENERAL STYLES***/
 body {
-    background-color: lightblue;
+    background-color: #f1ddbf;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     letter-spacing: 1.5px;
     color: whitesmoke;
@@ -16,8 +16,10 @@ body {
 }
 
 h1 {
-    color: brown;
-    text-shadow: 1px 1px whitesmoke;
+    color: #525e75;
+    font-weight: bolder;
+    letter-spacing: .5px;
+    text-shadow: 1px 1px #a9a3a3;
 }
 
 h4 {
@@ -38,8 +40,8 @@ li {
 }
 
 .main {
-    background-color: teal;
-    border: 4px solid brown;
+    background-color: #78938a;
+    border: 4px solid #525e75;
     max-width: 75%;
     min-height: 350px;
     padding: 10px;
@@ -58,11 +60,11 @@ li {
 }
 
 .black {
-    color: black;
+    color: #252323;
 }
 
 .red {
-    color: red;
+    color: #BA4848;
 }
 
 .score {
@@ -74,16 +76,16 @@ li {
 }
 
 .deck {  
-    background-color: white;  
     background-image: url(./images/1080a4bd1a33cec92019fab5efb3995d.png);
     background-position: absolute;
     background-repeat: none;
     background-size: 100px 125px;
     z-index: 1;
+    font-size: 20px;
+    text-shadow: 1px 1px black;
 }
 
 .card {
-    background-color: whitesmoke;
     position: relative;
 }
 
@@ -107,6 +109,7 @@ li {
 }
 
 .deck, .card, .placeholder-card {
+    background-color: #FCF7F7;
     display: flex;
     flex-direction: column;
     align-items: center;
