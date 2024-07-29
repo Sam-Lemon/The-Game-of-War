@@ -1,4 +1,4 @@
-import Deck from "./deck.js"; //imports deck and card info from deck.js file
+import Deck from "./deck.js"; 
 
 const cardValue = {
   2: 2,
