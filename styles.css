@@ -3,6 +3,7 @@ body {
     background-color: lightblue;
     color: black;
     user-select: none;
+    font-size: 18px;
 }
 
 h4 {
@@ -12,7 +13,7 @@ h4 {
 
 .main {
     background-color: white;
-    max-width: 50%;
+    max-width: 75%;
     min-height: 250px;
     border: 2px solid yellow;
     padding: 10px;
@@ -23,19 +24,6 @@ h4 {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-
-.card {
-    border: 1px solid #000;
-    border-radius: 5px;
-    width: 75px;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    margin: 5px;
 }
 
 .black {
@@ -54,19 +42,48 @@ h4 {
     margin-right: 5px;
 }
 
-.deck {    
+.deck {  
+    background-color: white;  
     background-image: url(./images/1080a4bd1a33cec92019fab5efb3995d.png);
-    background-position: center;
-    background-size: contain;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 75px;
-    height: 100px;
+    background-position: absolute;
+    background-repeat: none;
+    background-size: 100px 125px;
+    z-index: 1;
+}
+
+.card {
+    position: relative;
+}
+
+.rank {
+    position: absolute;
+    font-size: 18px;
+}
+
+.rank:first-of-type {
+    top: 5px;
+    left: 5px;
+}
+
+.rank:last-of-type {
+    bottom: 5px;
+    right: 5px;
+}
+
+.suit {
+    font-size: 60px;
+}
+
+.deck, .card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    width: 100px;
+    height: 125px;
+    font-size: 18px; 
+    border: 1px solid black;
+    border-radius: 5px;
     margin: 5px;
 }
 

@@ -64,9 +64,28 @@ class Card {
   getHTML() {
     //this pulls the code from the div in the index.html file
     const cardDiv = document.createElement("div");
-    cardDiv.innerHTML = `${this.rank}<br>${this.suit}`;
+    // cardDiv.innerHTML = `${this.rank}<br>${this.suit}`;
     cardDiv.classList.add("card", this.color);
     cardDiv.dataset.rank = `${this.suit} ${this.rank}`;
+
+    const rankTopLeft = document.createElement("span");
+    rankTopLeft.classList.add("rank");
+    rankTopLeft.innerText = this.rank;
+
+    const suitMiddle = document.createElement("span");
+    suitMiddle.classList.add("suit");
+    suitMiddle.innerText = this.suit;
+
+    const rankBottomRight = document.createElement("span");
+    rankBottomRight.classList.add("rank");
+    rankBottomRight.innerText = this.rank;
+
+
+    cardDiv.appendChild(rankTopLeft);
+    cardDiv.appendChild(suitMiddle);
+    cardDiv.appendChild(rankBottomRight);
+
+
     return cardDiv;
   }
 }
