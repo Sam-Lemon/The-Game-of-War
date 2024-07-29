@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <h1>The Classic Game of War</h1>
     <main class="main">
       <section class="computer">
         <div class="computer-score score">
@@ -15,7 +16,9 @@
         </div>
         <div class="card-piles">
           <div class="computer-deck deck"></div>
-          <div class="computer-card-pile card-pile"></div>
+          <div class="computer-card-pile card-pile">
+            <div class="placeholder-card"></div>
+          </div>
         </div>
       </section>
 
@@ -28,21 +31,25 @@
         </div>
         <div class="card-piles">
           <div class="player-deck deck"></div>
-          <div class="player-card-pile card-pile"></div>
+          <div class="player-card-pile card-pile">
+            <div class="placeholder-card"></div>
+          </div>
         </div>
       </section>
 
       <section>
-        <h5>Objective:</h5>
-        <ul>
-          <li>The first player to collect all of the cards wins.</li>
-        </ul>
-        <h5>Rules:</h5>
-        <ul>
-          <li>Click mouse to flip cards.</li>
-          <li>Highest ranked card wins.</li>
-          <li>Both cards are added to the winner's deck.</li>
-        </ul>
+        <div class="container-rules">
+          <h5>Objective:</h5>
+          <ul>
+            <li>The first player to collect all of the cards wins.</li>
+          </ul>
+          <h5>Rules:</h5>
+          <ul>
+            <li>Click mouse to flip cards.</li>
+            <li>Highest ranked card wins.</li>
+            <li>Both cards are added to the winner's deck.</li>
+          </ul>
+        </div>
       </section>
     </main>
   </body>
